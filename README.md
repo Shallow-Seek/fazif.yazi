@@ -1,4 +1,4 @@
-# Fazif: search over selected item with `fd`, `rg` `rga` and spawn any FZF configurations in Yazi
+# Fazif: search over selected items with `fd`, `rg` `rga` and spawn any FZF configuration in Yazi
 
 ## What Fazif Does
 
