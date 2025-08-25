@@ -54,19 +54,19 @@ The plugin can be configured to run any of your scripts by passing the script na
 
 ```toml
 # File/Directory finder using fd + fzf
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "b", "d" ]
 run = "plugin fazif faziffd"
 desc = "Find files/directories with fd and fzf"
 
 # Content finder using ripgrep + fzf
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "b", "r" ]
 run = "plugin fazif fazifrg"
 desc = "Find content in files with ripgrep and fzf"
 
 # Document content finder using ripgrep-all + fzf
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "b", "a" ]
 run = "plugin fazif fazifrga"
 desc = "Find content in documents with ripgrep-all and fzf"
