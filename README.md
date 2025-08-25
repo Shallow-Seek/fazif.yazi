@@ -92,21 +92,20 @@ Read this section if you use the default scripts `faziffd`, `fazifrg`, and `fazi
 
 ## Prerequisites
 
-Before using this plugin, ensure you have the following tools installed:
+The 3 scripts use the following tools:
 
-- [Yazi](https://github.com/sxyazi/yazi) 
 - [fzf](https://github.com/junegunn/fzf) 
-- [fd](https://github.com/sharkdp/fd) - Used by: `faziffd`
-- [ripgrep](https://github.com/BurntSushi/ripgrep) - Used by: `fazifrg`
-- [ripgrep-all](https://github.com/phiresky/ripgrep-all) - Used by: `fazifrga`
-- [rga djvu adaptor](https://github.com/phiresky/ripgrep-all/discussions/166) - Used by: `fazifrga`
-- [bat](https://github.com/sharkdp/bat) - Used by: `faziffd`, `fazifrg` 
-- [eza](https://github.com/eza-community/eza) - Used by: `faziffd`
-- [kitty](https://sw.kovidgoyal.net/kitty/) 
+- [fd](https://github.com/sharkdp/fd) - Used by `faziffd`
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - Used by `fazifrg`
+- [ripgrep-all](https://github.com/phiresky/ripgrep-all) - Used by `fazifrga`
+- [rga djvu adaptor](https://github.com/phiresky/ripgrep-all/discussions/166) - Used by `fazifrga` to search in djvu
 - Additional tools for document previews:
-  - pdftoppm (from poppler-utils) - Used by: `faziffd`, `fazifrga`
-  - ddjvu (from djvulibre) - Used by: `faziffd`, `fazifrga`
-  - libreoffice (for office documents) - Used by: `faziffd`
+  - [kitty](https://sw.kovidgoyal.net/kitty/) image preview reply on kitty icat. But you can use other termnial with ueberzugpp.  
+  - [bat](https://github.com/sharkdp/bat) - Used by `faziffd`, `fazifrg` 
+  - [eza](https://github.com/eza-community/eza) - Used by `faziffd`
+  - `pdftoppm` from [poppler-utils](https://github.com/freedesktop/poppler) - Used by `faziffd`, `fazifrga`
+  - `ddjvu` from [djvulibre](https://github.com/DjVuLibre/djvulibre) - Used by `faziffd`, `fazifrga`
+  - [libreoffice](https://github.com/LibreOffice/core) for office documents  - Used by `faziffd`
 
 ## Usage
 
@@ -121,6 +120,9 @@ Launch with the `bd` keybinding:
 - `Ctrl-r`: Search files from the root
 - `Ctrl-p`: Toggle the preview window
 - `Ctrl-x`: Open in Yazi (new instance)(if `setsid` is not available, use `nohup`)
+- `Ctrl-a`: Open in nnn(replace it with yours)(if `setsid` is not available, use `nohup`)
+- `Ctrl-s`: Open in thunar(replace it with yours)(if `setsid` is not available, use `nohup`)
+
 
 ### fazifrg - Search in Text
 
