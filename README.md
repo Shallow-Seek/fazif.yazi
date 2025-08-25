@@ -28,7 +28,7 @@ or
 git clone https://github.com/Shallow-Seek/fazif.yazi.git ~/.config/yazi/plugins/fazif.yazi
 ```
 
-2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the following section. To spawn your own fzf script into Yazi, you just need to add `$*` to the search command (fd, rg, ...) as the path and put them in `~/.config/yazi/plugins/fazif.yazi/`. Check `faziffd` to see how. 
+2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the following section. To spawn your own fzf script into Yazi, you just need to add `$*` to the search command (fd, rg, ...) as the path and put them in `~/.config/yazi/plugins/fazif.yazi/`. Check `faziffd` to see that. 
 Make sure your scripts are executable:
 
 ```bash
