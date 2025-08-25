@@ -137,3 +137,8 @@ Launch with the `ba` keybinding:
 ## License
 
 This plugin is released under the MIT License.
+
+## Credits
+
+- [Yazi](https://github.com/sxyazi/yazi) 
+- [fzf](https://github.com/junegunn/fzf)
