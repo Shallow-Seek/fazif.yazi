@@ -1,11 +1,15 @@
-# fazif: search over selected items with `fd`, `rg`, `rga` and spawn any FZF configuration in Yazi
+# fazif: Search over selected items with `fd`, `rg`, `rga` and spawn any FZF configuration in Yazi
 
 ## What fazif Does
 
 With fazif, you can:
-- Spawn all your fzf scripts into the [Yazi](https://github.com/sxyazi/yazi) file manager to
-- Search within selected folders and directories, or under the current folder when none are selected (the default Yazi fzf behavior)
+- Spawn all your fzf scripts into the [Yazi](https://github.com/sxyazi/yazi) file manager
+- Search within selected folders and directories
+- Search within current folder when none are selected (the default Yazi fzf behavior)
 - Reveal selected items in new tabs (if you add the `-multi` fzf option in the script)
+
+## To Do
+* Send selected files to the search result panel like the default Yazi `fd`, `rg`
 
 ## How It Works
 
@@ -28,7 +32,7 @@ or
 git clone https://github.com/Shallow-Seek/fazif.yazi.git ~/.config/yazi/plugins/fazif.yazi
 ```
 
-2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the following section. To spawn your own fzf script into Yazi, you just need to add `$*` to the search command (fd, rg, ...) as the path and put them in `~/.config/yazi/plugins/fazif.yazi/`. Check `faziffd` to see that. 
+2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the next section. To spawn your own fzf script into Yazi, you just need to add `$*` to the search command (fd, rg, ...) as the path and put them in `~/.config/yazi/plugins/fazif.yazi/`. Check `faziffd` to see that. 
 Make sure your scripts are executable:
 
 ```bash
@@ -38,7 +42,7 @@ chmod +x ~/.config/yazi/plugins/fazif.yazi/fazifrga
 chmod +x ~/.config/yazi/plugins/fazif.yazi/yourscript1
 ...
 ```
-Open a terminal in `~/.config/yazi/plugins/fazif` and test the script by running `./faziffd`. You may need to update the shebang (`#!`) at the top of the script to match your system’s shell interpreter path. Run `which sh` at the terminal to find it.
+Open a terminal in `~/.config/yazi/plugins/fazif.yazi` and test the script by running `./faziffd`. You may need to update the shebang (`#!`) at the top of the script to match your system's shell interpreter path. Run `which sh` at the terminal to find it.
 
 
 
@@ -69,9 +73,6 @@ desc = "Find content in documents with ripgrep-all and fzf"
 ```
 
 That's it. However, if your rg or rga's delimiter is not the default `:`, you will need to change the delimiter in main.lua.
-
-## To do
-* Send selected files to the search result panel like in default Yazi `fd`, `rg` search. 
 
 ---
 
@@ -120,9 +121,7 @@ Launch with the `bd` keybinding:
 - `Ctrl-f`: Search directories from the root
 - `Ctrl-r`: Search files from the root
 - `Ctrl-p`: Toggle the preview window
-- `Ctrl-a`: Open in the nnn file manager
-- `Ctrl-x`: Open in Yazi (new instance)
-- `Ctrl-s`: Open in the Thunar file manager
+- `Ctrl-x`: Open in Yazi (new instance)(if `setsid` is not available, use `nohup`)
 
 ### fazifrg - Search in Text
 
@@ -138,7 +137,7 @@ Launch with the `ba` keybinding:
 - Searches content in PDFs and DjVu documents
 - `Ctrl-y`: Switch between rga search mode and fzf filtering mode
 - `Ctrl-p`: Toggle the preview window
-- `Ctrl-o`: Open document in Zathura at the matched page
+- `Ctrl-o`: Open document in Zathura(or your viewer) at the matched page
 
 ## License
 
