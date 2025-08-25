@@ -67,6 +67,9 @@ desc = "Find content in documents with ripgrep-all and fzf"
 
 That's it. However, if your rg or rga's delimiter is not the default `:`, you will need to change the delimiter in main.lua.
 
+## To do
+* Send selected files to the search result panel like in default Yazi `fd`, `rg` search. 
+
 ---
 
 Read this section if you use the default scripts `faziffd`, `fazifrg`, and `fazifrga`.
