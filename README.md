@@ -86,8 +86,8 @@ Read this section if you use the default scripts `faziffd`, `fazifrg`, and `fazi
 
 ## Preview Features
 
-- The `fazifrg` preview shows file content with `bat` when there is no input. When you start typing, `rg` kicks in, and the preview highlights the matching line with context.
-- The `fazifrga` preview shows the first page of a document when there is no input. When you start typing, `rga` kicks in, and the preview shows the matching page in the document.
+- The `fazifrg` preview shows file content with `bat` when started with no input. With any input, `rg` kicks in, and the preview highlights the matching line with context.
+- The `fazifrga` preview shows the first page of a document when started with no input. With any input, `rga` kicks in, and the preview shows the matching page in the document.
 - **Directory listings with `eza`**
 
 ## Prerequisites
