@@ -1,8 +1,8 @@
-# Fazif: search over selected items with `fd`, `rg` `rga` and spawn any FZF configuration in Yazi
+# fazif: search over selected items with `fd`, `rg` `rga` and spawn any FZF configuration in Yazi
 
-## What Fazif Does
+## What fazif Does
 
-With Fazif, you can:
+With fazif, you can:
 - Spawn all your fzf scripts into the [Yazi](https://github.com/sxyazi/yazi) file manager to
 - Search within selected folders and directories, or under the current folder when none are selected (the default Yazi fzf behavior)
 - Reveal selected items in new tabs (if you add the `-multi` fzf option in the script)
