@@ -2,7 +2,6 @@
 
 ## What fazif Does
 
-With fazif, you can:
 - Spawn all your fzf scripts into the [Yazi](https://github.com/sxyazi/yazi) file manager
 - Search within selected folders and directories
 - Search within current folder when none are selected (the default Yazi fzf behavior)
