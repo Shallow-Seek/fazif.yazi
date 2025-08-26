@@ -99,7 +99,7 @@ The 3 scripts use the following tools:
 - [ripgrep-all](https://github.com/phiresky/ripgrep-all) - Used by `fazifrga`
 - [rga djvu adaptor](https://github.com/phiresky/ripgrep-all/discussions/166) - Used by `fazifrga` to search in djvu
 - Additional tools for document previews:
-  - [kitty](https://sw.kovidgoyal.net/kitty/) image preview reply on kitty icat. But you can use other termnial with ueberzugpp.  
+  - [kitty](https://sw.kovidgoyal.net/kitty/) Image preview uses kitty icat. You can also use other terminals with image preview or use ueberzugpp.
   - [bat](https://github.com/sharkdp/bat) - Used by `faziffd`, `fazifrg` 
   - [eza](https://github.com/eza-community/eza) - Used by `faziffd`
   - `pdftoppm` from [poppler-utils](https://github.com/freedesktop/poppler) - Used by `faziffd`, `fazifrga`
