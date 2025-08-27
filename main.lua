@@ -78,7 +78,7 @@ local function _entry(script_name)
 	else
 		for i = 1, #urls do
 			ya.emit("tab_create", {})
-			ya.emit("reveal", { urls[i], raw = true })
+			ya.emit(fs.cha(urls[i]).is_dir and "cd" or "reveal", { urls[i], raw = true })
 		end
 	end
 end
