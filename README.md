@@ -5,7 +5,7 @@
 - Search in [Yazi](https://github.com/sxyazi/yazi) with any config of fzf search command fd, rg, rga ag, astgrep ... and options. Spawn all your fzf scripts into yazi.
 - Search within selected files and directories
 - Search within current working directory when none are selected (the default Yazi fzf behavior)
-- Reveal selected items in new tabs(use -multi to select multiple in fzf)
+- Reveal selected files and enter select directores in new tabs(use -multi to select multiple in fzf)
 
 ## To Do
 * Send selected files to the search result panel like the default Yazi `fd`, `rg`
