@@ -2,10 +2,10 @@
 
 ## What fazif Does
 
-- Spawn all your fzf scripts into the [Yazi](https://github.com/sxyazi/yazi) file manager
-- Search within selected folders and directories
-- Search within current folder when none are selected (the default Yazi fzf behavior)
-- Reveal selected items in new tabs (if you add the `-multi` fzf option in the script)
+- Search in [Yazi](https://github.com/sxyazi/yazi) with any config of fzf search command fd, rg, rga ag, astgrep ... and options. Spawn all your fzf scripts into yazi.
+- Search within selected files and directories
+- Search within current working directory when none are selected (the default Yazi fzf behavior)
+- Reveal selected items in new tabs(use -multi to select multiple in fzf)
 
 ## To Do
 * Send selected files to the search result panel like the default Yazi `fd`, `rg`
@@ -31,7 +31,7 @@ or
 git clone https://github.com/Shallow-Seek/fazif.yazi.git ~/.config/yazi/plugins/fazif.yazi
 ```
 
-2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the next section. To spawn your own fzf script into Yazi, you just need to add `$*` to the search command (fd, rg, ...) as the path and put them in `~/.config/yazi/plugins/fazif.yazi/`. Check `faziffd` to see that. 
+2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the next section. To spawn your own fzf script into Yazi, you just need to add `$*` to the search command as the path and put them in `~/.config/yazi/plugins/fazif.yazi/`. Check `faziffd` to see that. 
 Make sure your scripts are executable:
 
 ```bash
