@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env sh
 rm -f /tmp/rg-fzf-{r,f} 2>/dev/null
 RG_PREFIX="rga --color=always --no-heading --smart-case --glob='*.pdf' --glob='*.djvu' "
 FILES_TO_ADD=""

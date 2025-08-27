@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env sh
 rm -f /tmp/rg-fzf-{r,f} 2>/dev/null
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case"
 

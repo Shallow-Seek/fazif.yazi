@@ -41,7 +41,7 @@ chmod +x ~/.config/yazi/plugins/fazif.yazi/fazifrga
 chmod +x ~/.config/yazi/plugins/fazif.yazi/yourscript1
 ...
 ```
-Open a terminal in `~/.config/yazi/plugins/fazif.yazi` and test the script by running `./faziffd`. You may need to update the shebang (`#!`) at the top of the script to match your system's shell interpreter path. Run `which sh` at the terminal to find it.
+Open a terminal in `~/.config/yazi/plugins/fazif.yazi` and test the script by running `./faziffd`. You may need to update the shebang (`#!`) in the example scripts.
 
 
 
