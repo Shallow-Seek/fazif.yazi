@@ -75,22 +75,22 @@ desc = "Find content in documents with ripgrep-all and fzf"
 That's it. However, if your rg or rga's delimiter is not the default `:`, you will need to change the delimiter in main.lua.
 
 ---
-
+## Example scripts 
 Read this section if you use the default scripts `faziffd`, `fazifrg`, and `fazifrga`.
 
-## Features
+### Features
 
 1. **faziffd** - File/directory jumper using `fd` 
 2. **fazifrg** - `ripgrep` on selected.
 3. **fazifrga** - `ripgrep-all`  search in selected PDFs and DjVu 
 
-## Preview Features
+### Preview Features
 
 - The `fazifrg` preview shows file content with `bat` when started with no input. With any input, `rg` kicks in, and the preview highlights the matching line with context.
 - The `fazifrga` preview shows the first page of a document when started with no input. With any input, `rga` kicks in, and the preview shows the matching page in the document.
-- **Directory listings with `eza`**
+- Directory preview with `eza`
 
-## Prerequisites
+### Prerequisites
 
 The 3 scripts use the following tools:
 
@@ -107,9 +107,9 @@ The 3 scripts use the following tools:
   - `ddjvu` from [djvulibre](https://github.com/DjVuLibre/djvulibre) - Used by `faziffd`, `fazifrga` for djvu preview.
   - [libreoffice](https://github.com/LibreOffice/core) for office documents  - Used by `faziffd` for office file preview.
 
-## Usage
+### Usage
 
-### faziffd - File/Directory Finder
+#### faziffd - File/Directory Finder
 
 Launch with the `bd` keybinding:
 - `Ctrl-w`: Search files in the home directory
@@ -123,15 +123,15 @@ Launch with the `bd` keybinding:
 - `Ctrl-s`: Open in thunar(replace it with yours)(if `setsid` is not available, use `nohup`)
 
 
-### fazifrg - Search in Text
+#### fazifrg - Search in Text
 
 Launch with the `br` keybinding:
 - Type to search content in files using ripgrep
-- `Ctrl-y`: Switch between ripgrep search mode and fzf filtering mode
+- `Ctrl-y`: Switch between rga search mode and fzf filtering mode
 - `Ctrl-p`: Toggle the preview window/position
 - `Ctrl-o`: Open file in Neovim at the matched line
 
-### fazifrga - Search in PDF and DjVu
+#### fazifrga - Search in PDF and DjVu
 
 Launch with the `ba` keybinding:
 - Searches content in PDFs and DjVu documents
@@ -143,7 +143,6 @@ Launch with the `ba` keybinding:
 
 This plugin is released under the MIT License.
 
-## Credits
+## Acknowledgement
+Plugin is based on the default [Yazi](https://github.com/sxyazi/yazi) fzf plugin. Fzf scripts grow out of [fzf](https://github.com/junegunn/fzf)'s wiki and examples. 
 
-- [Yazi](https://github.com/sxyazi/yazi) 
-- [fzf](https://github.com/junegunn/fzf)
