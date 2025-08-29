@@ -69,6 +69,7 @@ desc = "Find content in files with ripgrep and fzf"
 on = [ "b", "a" ]
 run = "plugin fazif fazifrga"
 desc = "Find content in documents with ripgrep-all and fzf"
+...
 ```
 
 That's it. However, if your rg or rga's delimiter is not the default `:`, you will need to change the delimiter in main.lua.
@@ -79,9 +80,9 @@ Read this section if you use the default scripts `faziffd`, `fazifrg`, and `fazi
 
 ## Features
 
-1. **faziffd** - File/directory finder using `fd` 
-2. **fazifrg** - search in text using `ripgrep` 
-3. **fazifrga** - `ripgrep-all`  search in PDFs and DjVu 
+1. **faziffd** - File/directory jumper using `fd` 
+2. **fazifrg** - `ripgrep` on selected.
+3. **fazifrga** - `ripgrep-all`  search in selected PDFs and DjVu 
 
 ## Preview Features
 
@@ -99,12 +100,12 @@ The 3 scripts use the following tools:
 - [ripgrep-all](https://github.com/phiresky/ripgrep-all) - Used by `fazifrga`
 - [rga djvu adaptor](https://github.com/phiresky/ripgrep-all/discussions/166) - Used by `fazifrga` to search in djvu
 - Additional tools for document previews:
-  - [kitty](https://sw.kovidgoyal.net/kitty/) Image preview uses kitty icat. You can also use other terminals with image preview or use ueberzugpp.
+  - [kitty](https://sw.kovidgoyal.net/kitty/) Image preview uses kitty icat. You can also use other terminals that support image or use ueberzugpp.
   - [bat](https://github.com/sharkdp/bat) - Used by `faziffd`, `fazifrg` 
   - [eza](https://github.com/eza-community/eza) - Used by `faziffd`
-  - `pdftoppm` from [poppler-utils](https://github.com/freedesktop/poppler) - Used by `faziffd`, `fazifrga`
-  - `ddjvu` from [djvulibre](https://github.com/DjVuLibre/djvulibre) - Used by `faziffd`, `fazifrga`
-  - [libreoffice](https://github.com/LibreOffice/core) for office documents  - Used by `faziffd`
+  - `pdftoppm` from [poppler-utils](https://github.com/freedesktop/poppler) - Used by `faziffd`, `fazifrga` for pdf prevew.
+  - `ddjvu` from [djvulibre](https://github.com/DjVuLibre/djvulibre) - Used by `faziffd`, `fazifrga` for djvu preview.
+  - [libreoffice](https://github.com/LibreOffice/core) for office documents  - Used by `faziffd` for office file preview.
 
 ## Usage
 
@@ -116,8 +117,7 @@ Launch with the `bd` keybinding:
 - `Alt-c`: Search directories in the current working directory
 - `Ctrl-t`: Search files in the current working directory
 - `Ctrl-f`: Search directories from the root
-- `Ctrl-r`: Search files from the root
-- `Ctrl-p`: Toggle the preview window
+- `Ctrl-p`: Toggle the preview window/position
 - `Ctrl-x`: Open in Yazi (new instance)(if `setsid` is not available, use `nohup`)
 - `Ctrl-a`: Open in nnn(replace it with yours)(if `setsid` is not available, use `nohup`)
 - `Ctrl-s`: Open in thunar(replace it with yours)(if `setsid` is not available, use `nohup`)
@@ -128,7 +128,7 @@ Launch with the `bd` keybinding:
 Launch with the `br` keybinding:
 - Type to search content in files using ripgrep
 - `Ctrl-y`: Switch between ripgrep search mode and fzf filtering mode
-- `Ctrl-p`: Toggle the preview window position
+- `Ctrl-p`: Toggle the preview window/position
 - `Ctrl-o`: Open file in Neovim at the matched line
 
 ### fazifrga - Search in PDF and DjVu
@@ -136,7 +136,7 @@ Launch with the `br` keybinding:
 Launch with the `ba` keybinding:
 - Searches content in PDFs and DjVu documents
 - `Ctrl-y`: Switch between rga search mode and fzf filtering mode
-- `Ctrl-p`: Toggle the preview window
+- `Ctrl-p`: Toggle the preview window/position
 - `Ctrl-o`: Open document in Zathura(or your viewer) at the matched page
 
 ## License
