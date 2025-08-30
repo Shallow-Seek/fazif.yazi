@@ -44,7 +44,7 @@ git clone https://github.com/Shallow-Seek/fazif.yazi.git ~/.config/yazi/plugins/
 
 2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the next section. The plugin still works with your scripts without them.
 
-Simple put your fzf script in `~/.config/yazi/plugins/fazif.yazi` and set a keybinding to use them. If you want to your script to search on selected items, you just need to add `$*` to the search command.  Check `faziffd` to see that. 
+Simple put your fzf script in `~/.config/yazi/plugins/fazif.yazi` and set a keybinding to use them. To make your script search on selected items, just add `$*` to the search command.  Check `faziffd` to see that. 
 
 Make sure your scripts are executable:
 
