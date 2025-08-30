@@ -3,12 +3,23 @@
 ## What fazif Does
 
 - Search in [Yazi](https://github.com/sxyazi/yazi) with any config of fzf search command fd, rg, rga ag, astgrep ... and options. Spawn all your fzf scripts into yazi.
-- Search within selected files and directories
-- Search within current working directory when none are selected (the default Yazi fzf behavior)
-- Reveal selected files and enter select directores in new tabs(use -multi to select multiple in fzf)
 
-## To Do
-* Send selected files to the search result panel like the default Yazi `fd`, `rg`
+For example, a simple directory jumper. Simply create a file in ` ~/.config/yazi/plugins/fazif.yazi` with the following, make it executable, and set a keybinding.
+
+```
+#!/usr/bin/env sh
+fd -H -t d|fzf
+```
+
+- Search within selected files and directories
+
+For example, use `fazifrga` script to searching a pattern in selected pdfs and fzf preview the matching pages that have the pattern.
+
+- Search within current working directory when none are selected (the default Yazi fzf behavior)
+
+- Reveal selected file or enter selected directory in a new yazi tab; if multiple items are selected in fzf (`-multi` option in fzf) then show selected items in the search result view.
+
+For example, find relevent books using `faziffd` and reveal them in yazi's search result view , then use `fazifrga` to search a pattern in these books. 
 
 ## How It Works
 
@@ -31,7 +42,10 @@ or
 git clone https://github.com/Shallow-Seek/fazif.yazi.git ~/.config/yazi/plugins/fazif.yazi
 ```
 
-2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the next section. To spawn your own fzf script into Yazi, you just need to add `$*` to the search command as the path and put them in `~/.config/yazi/plugins/fazif.yazi/`. Check `faziffd` to see that. 
+2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the next section. The plugin still works with your scripts without them.
+
+Simple put your fzf script in `~/.config/yazi/plugins/fazif.yazi` and set a keybinding to use them. If you want to your script to search on selected items, you just need to add `$*` to the search command.  Check `faziffd` to see that. 
+
 Make sure your scripts are executable:
 
 ```bash
@@ -41,9 +55,7 @@ chmod +x ~/.config/yazi/plugins/fazif.yazi/fazifrga
 chmod +x ~/.config/yazi/plugins/fazif.yazi/yourscript1
 ...
 ```
-Open a terminal in `~/.config/yazi/plugins/fazif.yazi` and test the script by running `./faziffd`. You may need to update the shebang (`#!`) in the example scripts.
-
-
+You may need to update the shebang (`#!`) in the example scripts.
 
 ## Add Keymaps to Your Script
 
@@ -72,7 +84,7 @@ desc = "Find content in documents with ripgrep-all and fzf"
 ...
 ```
 
-That's it. However, if your rg or rga's delimiter is not the default `:`, you will need to change the delimiter in main.lua.
+That's it. However, if your `rg` or `rga`'s delimiter is not the default `:`, you will need to change the delimiter in main.lua.
 
 ---
 ## Example scripts 
@@ -109,7 +121,7 @@ The 3 scripts use the following tools:
 
 ### Usage
 
-#### faziffd - File/Directory Finder
+#### faziffd - File/Directory jumper
 
 Launch with the `bd` keybinding:
 - `Ctrl-w`: Search files in the home directory
@@ -123,10 +135,9 @@ Launch with the `bd` keybinding:
 - `Ctrl-s`: Open in thunar(replace it with yours)(if `setsid` is not available, use `nohup`)
 
 
-#### fazifrg - Search in Text
+#### fazifrg - Search in Text file
 
 Launch with the `br` keybinding:
-- Type to search content in files using ripgrep
 - `Ctrl-y`: Switch between rga search mode and fzf filtering mode
 - `Ctrl-p`: Toggle the preview window/position
 - `Ctrl-o`: Open file in Neovim at the matched line
@@ -134,7 +145,6 @@ Launch with the `br` keybinding:
 #### fazifrga - Search in PDF and DjVu
 
 Launch with the `ba` keybinding:
-- Searches content in PDFs and DjVu documents
 - `Ctrl-y`: Switch between rga search mode and fzf filtering mode
 - `Ctrl-p`: Toggle the preview window/position
 - `Ctrl-o`: Open document in Zathura(or your viewer) at the matched page
@@ -144,5 +154,5 @@ Launch with the `ba` keybinding:
 This plugin is released under the MIT License.
 
 ## Acknowledgement
-Plugin is based on the default [Yazi](https://github.com/sxyazi/yazi) fzf plugin. Fzf scripts grow out of [fzf](https://github.com/junegunn/fzf)'s wiki and examples. 
+Plugin is based on the default [Yazi](https://github.com/sxyazi/yazi) fzf plugin and vcs-files plugin. Fzf scripts grow out of [fzf](https://github.com/junegunn/fzf)'s wiki and examples. 
 

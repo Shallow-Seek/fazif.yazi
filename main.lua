@@ -58,9 +58,11 @@ local function run_with(cwd, selected, script_name)
 	return output.stdout, nil
 end
 
-local function _entry(script_name)
+local function entry(_, job)
+	local script_name = job.args[1]
+	
 	local permit = ya.hide()
-	local cwd, selected = state()  -- This calls the synchronized function
+	local cwd, selected = state()
 
 	local output, err = run_with(cwd, selected, script_name)
 
@@ -75,17 +77,30 @@ local function _entry(script_name)
 	local urls = split_urls(cwd, output)
 	if #urls == 0 then
 		return
-	else
-		for i = 1, #urls do
-			ya.emit("tab_create", {})
-			ya.emit(fs.cha(urls[i]).is_dir and "cd" or "reveal", { urls[i], raw = true })
-		end
-	end
-end
+	elseif #urls == 1 then
+		ya.emit("tab_create", {})
+		ya.emit(fs.cha(urls[1]).is_dir and "cd" or "reveal", { urls[1], raw = true })
+    else
+        ya.emit("tab_create", {})
+        local id = ya.id("ft")
+        local virtual_cwd = cwd:into_search("FZF Results")
+        ya.emit("cd", { Url(virtual_cwd) })
+        ya.emit("update_files", { op = fs.op("part", { id = id, url = Url(virtual_cwd), files = {} }) })
+        local files = {}
 
-local function entry(_, job)
-	local script_name = job.args[1]
-	_entry(script_name)
+        for i = 1, #urls do
+            local url = urls[i]
+            local cha = fs.cha(url, true)
+            if cha then
+                files[#files + 1] = File { url = url, cha = cha }
+            else
+                files[#files + 1] = File { url = url }
+            end
+        end
+
+        ya.emit("update_files", { op = fs.op("part", { id = id, url = Url(virtual_cwd), files = files }) })
+        ya.emit("update_files", { op = fs.op("done", { id = id, url = virtual_cwd, cha = Cha { kind = 16 } }) })
+    end
 end
 
 return { entry = entry }
