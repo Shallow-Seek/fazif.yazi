@@ -1,13 +1,11 @@
-# fazif: Search over selected items in Yazi with your config of search command and fuzzy filter command.
+fazif allows you to search over selected items in Yazi with your configuration of search and fuzzy filter command.
 
-## What fazif Does
+You can config search command ([fd](https://github.com/sharkdp/fd), [rg](https://github.com/BurntSushi/ripgrep), [rga](https://github.com/phiresky/ripgrep-all), [ag](https://github.com/ggreer/the_silver_searcher), [astgrep](https://github.com/ast-grep/ast-grep) ...), fuzzy filter command ([fzf](https://github.com/junegunn/fzf), [fzy](https://github.com/jhawthorn/fzy), [zf](https://github.com/natecraddock/zf), [skim](https://github.com/lotabout/skim)), and options in a script and spawn all your scripts easily into yazi. Here are some use cases.
 
-Search in [Yazi](https://github.com/sxyazi/yazi) with any config of search command ([fd](https://github.com/sharkdp/fd), [rg](https://github.com/BurntSushi/ripgrep), [rga](https://github.com/phiresky/ripgrep-all), [ag](https://github.com/ggreer/the_silver_searcher), [astgrep](https://github.com/ast-grep/ast-grep) ...), fuzzy filter command ([fzf](https://github.com/junegunn/fzf), [fzy](https://github.com/jhawthorn/fzy), [zf](https://github.com/natecraddock/zf), [skim](https://github.com/lotabout/skim)), and options. Spawn all your scripts easily into yazi. Here are some use cases.
-
-- Search within the current working directory when none are selected.
+1. Search within the current working directory when none are selected.
 
 For example, a simple directory jumper. Simply create a file in `~/.config/yazi/plugins/fazif.yazi` with one of the following, make it executable, and set a keybinding.
-If you use `fzf`
+
 ```
 #!/usr/bin/env sh
 fd -H -t d|fzf
@@ -20,8 +18,15 @@ or
 fd -H -t d|zf
 ```
 
+or jump to a dir. outside CWD by applying your query to the upper dir with a shortcut key.
 
-- Search within selected files and directories
+```
+#!/usr/bin/env sh
+fd -H -t d|fzf \
+--bind 'ctrl-e:transform:echo "change-prompt(Home_Dir> )+reload(fd . ~ --hidden --type d)"' \
+```
+
+2. Search within selected files and directories
 
 Example 1: to jump to some dir. in the selected folders, simply create a file in `~/.config/yazi/plugins/fazif.yazi` with one of the following, make it executable, and set a keybinding.
 
@@ -40,7 +45,7 @@ fd -H -t d $*|zf
 
 Example 2: use `fazifrga` script to search for a pattern in selected PDFs and preview the matching pages that have the pattern with fzf.
 
-- Reveal the selected file or enter the selected directory in a new yazi tab; if multiple items are selected in fzf (using the `-multi` option in fzf), then show the selected items in the search result view.
+3. Reveal the selected file or enter the selected directory in a new yazi tab; if multiple items are selected in fzf (using the `-multi` option in fzf), then show the selected items in the search result view.
 
 For example, find relevant books using `faziffd` and reveal them in yazi's search result view, then use `fazifrga` to search for a pattern in these books.
 
