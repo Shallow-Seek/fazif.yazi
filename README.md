@@ -18,7 +18,7 @@ or
 fd -H -t d|zf
 ```
 
-or jump to a dir. outside CWD by applying your query to the upper dir with a shortcut key.
+or jump to a dir. outside CWD by applying your query to a upper dir. with a shortcut key.
 
 ```
 #!/usr/bin/env sh
