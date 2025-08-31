@@ -1,25 +1,48 @@
-# fazif: Search over selected items with `fd`, `rg`, `rga` and spawn any FZF configuration in Yazi
+# fazif: Search over selected items in Yazi with your config of search command and fuzzy filter command.
 
 ## What fazif Does
 
-- Search in [Yazi](https://github.com/sxyazi/yazi) with any config of fzf search command fd, rg, rga ag, astgrep ... and options. Spawn all your fzf scripts into yazi.
+Search in [Yazi](https://github.com/sxyazi/yazi) with any config of search command ([fd](https://github.com/sharkdp/fd), [rg](https://github.com/BurntSushi/ripgrep), [rga](https://github.com/phiresky/ripgrep-all), [ag](https://github.com/ggreer/the_silver_searcher), [astgrep](https://github.com/ast-grep/ast-grep) ...), fuzzy filter command ([fzf](https://github.com/junegunn/fzf), [fzy](https://github.com/jhawthorn/fzy), [zf](https://github.com/natecraddock/zf), [skim](https://github.com/lotabout/skim)), and options. Spawn all your scripts easily into yazi. Here are some use cases.
 
-For example, a simple directory jumper. Simply create a file in ` ~/.config/yazi/plugins/fazif.yazi` with the following, make it executable, and set a keybinding.
+- Search within the current working directory when none are selected.
 
+For example, a simple directory jumper. Simply create a file in `~/.config/yazi/plugins/fazif.yazi` with one of the following, make it executable, and set a keybinding.
+If you use `fzf`
 ```
 #!/usr/bin/env sh
 fd -H -t d|fzf
 ```
 
+or
+
+```
+#!/usr/bin/env sh
+fd -H -t d|zf
+```
+
+
 - Search within selected files and directories
 
-For example, use `fazifrga` script to searching a pattern in selected pdfs and fzf preview the matching pages that have the pattern.
+Example 1: to jump to some dir. in the selected folders, simply create a file in `~/.config/yazi/plugins/fazif.yazi` with one of the following, make it executable, and set a keybinding.
 
-- Search within current working directory when none are selected (the default Yazi fzf behavior)
 
-- Reveal selected file or enter selected directory in a new yazi tab; if multiple items are selected in fzf (`-multi` option in fzf) then show selected items in the search result view.
+```
+#!/usr/bin/env sh
+fd -H -t d $*|fzf
+```
 
-For example, find relevent books using `faziffd` and reveal them in yazi's search result view , then use `fazifrga` to search a pattern in these books. 
+or
+
+```
+#!/usr/bin/env sh
+fd -H -t d $*|zf
+```
+
+Example 2: use `fazifrga` script to search for a pattern in selected PDFs and preview the matching pages that have the pattern with fzf.
+
+- Reveal the selected file or enter the selected directory in a new yazi tab; if multiple items are selected in fzf (using the `-multi` option in fzf), then show the selected items in the search result view.
+
+For example, find relevant books using `faziffd` and reveal them in yazi's search result view, then use `fazifrga` to search for a pattern in these books.
 
 ## How It Works
 
