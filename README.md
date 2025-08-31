@@ -51,8 +51,8 @@ For example, find relevant books using `faziffd` and reveal them in yazi's searc
 
 ## How It Works
 
-This plugin acts as a bridge between Yazi and standalone fzf scripts. The main.lua file serves as a generic wrapper that:
-1. Passes the current working directory and selected files/directories from Yazi (`$*` in the script) to the fzf script
+This plugin acts as a bridge between Yazi and standalone scripts. The main.lua file serves as a generic wrapper that:
+1. Passes the current working directory and selected files/directories from Yazi (`$*` in the script) to the script
 2. Executes the specified script (passed as an argument in the keymap)
 3. Processes the output and opens results in new Yazi tabs
 
@@ -72,7 +72,7 @@ git clone https://github.com/Shallow-Seek/fazif.yazi.git ~/.config/yazi/plugins/
 
 2. The 3 default scripts `faziffd`, `fazifrg`, and `fazifrga` provided are examples with features shown in the next section. The plugin still works with your scripts without them.
 
-Simple put your fzf script in `~/.config/yazi/plugins/fazif.yazi` and set a keybinding to use them. To make your script search on selected items, just add `$*` to the search command.  Check `faziffd` to see that. 
+Simple put your script in `~/.config/yazi/plugins/fazif.yazi` and set a keybinding to use them. To make your script search on selected items, just add `$*` to the search command.  Check `faziffd` to see that. 
 
 Make sure your scripts are executable:
 
