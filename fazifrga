@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+rm -f /tmp/rg-fzf-{r,f} 2>/dev/null
+RG_PREFIX="rga --glob='*.pdf' --glob='*.djvu' --glob='*.djv' --with-filename --color=always --no-heading --smart-case --field-match-separator $'\u00a0'"
+
+FILES_TO_ADD=""
+for item in "$@"; do
+    if [ -f "$item" ]; then
+        FILES_TO_ADD="$FILES_TO_ADD$item"$'\n'
+    fi
+done
+
+(fd . -e pdf -e djvu -e djv "$@" 2>/dev/null & printf "%s" "$FILES_TO_ADD") | fzf \
+    --ansi \
+    --delimiter $'\u00a0' \
+    --disabled \
+    --prompt="rga> " \
+    --color "hl:-1:underline,hl+:-1:underline:reverse" \
+    --bind "change:reload:sleep 0.1; $RG_PREFIX {q} $([ $# -gt 0 ] && printf "%q " "$@") || true" \
+    --bind 'focus:transform-preview-label:echo $(basename {1})' \
+    --bind 'ctrl-p:change-preview-window(right,50%|down,50%|hidden)' \
+    --bind 'ctrl-y:transform:[[ ! $FZF_PROMPT =~ rga ]] &&
+            echo "rebind(change)+change-prompt(rga> )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
+            echo "unbind(change)+change-prompt(fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' \
+    --bind 'ctrl-o:execute(
+            pagenumber=$(echo {2} | cut -d: -f1 | sed "s/Page\ //")
+            zathura --page=$pagenumber --find={q} {1} &)' \
+    --preview '
+            printf "\033_Ga=d,q=1\033\\"
+            [ -n {2} ] && pagenumber=$(echo {2} | cut -d: -f1 | sed "s/Page\ //") || pagenumber=1
+            tmp="/tmp/fzf_preview"
+            case {1} in
+                *.pdf)
+                    pdftoppm -q -f $pagenumber -l $pagenumber -jpeg -jpegopt quality=60 -scale-to-x 800 -scale-to-y -1 -singlefile {1} $tmp \
+                      && kitty icat --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 $tmp.jpg
+                    ;;
+                *.djvu)
+                    ddjvu -format=ppm -page=$pagenumber -size=800x-1 -aspect=yes {1} $tmp 2>/dev/null \
+                      && kitty icat --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 $tmp
+                    ;;
+            esac
+                ' \
+    # --bind "start:reload:$RG_PREFIX {q} || true" \
