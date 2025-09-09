@@ -172,7 +172,7 @@ The 3 scripts use the following tools:
 
 - `Ctrl-y`: Switch between rga search mode and fzf filtering mode
 - `Ctrl-p`: Toggle the preview window/position
-- `Ctrl-o`: `fazifrg` open file in Neovim at the matched line. `fazifrga` open document in Zathura at the matched page and highlight the querry.
+- `Ctrl-o`: `fazifrg` open file in Neovim at the matched line. `fazifrga` open document in Zathura at the matched page and highlight the query.
 
 ## License
 
