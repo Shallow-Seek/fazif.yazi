@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 FD_COMMAND="fd --changed-within 5d"
 $FD_COMMAND . "$@" |fzf \
 --info=inline \

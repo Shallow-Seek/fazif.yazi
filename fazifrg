@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 rm -f /tmp/rg-fzf-{r,f} 2>/dev/null
 RG_PREFIX="rg --with-filename --column --line-number --color=always --smart-case --field-match-separator $'\u00a0'"
 

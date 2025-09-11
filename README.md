@@ -7,21 +7,21 @@ You can config search command ([fd](https://github.com/sharkdp/fd), [rg](https:/
 For example, a simple directory jumper. Simply create a file in `~/.config/yazi/plugins/fazif.yazi` with one of the following, make it executable, and set a keybinding.
 
 ```
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 fd -H -t d|fzf
 ```
 
 or
 
 ```
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 fd -H -t d|zf
 ```
 
 or jump to a dir. outside CWD by applying your query to a upper dir. with a shortcut key.
 
 ```
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 fd -H -t d|fzf \
 --bind 'ctrl-e:transform:echo "change-prompt(Home_Dir> )+reload(fd . ~ --hidden --type d)"' \
 ```
@@ -32,14 +32,14 @@ Example 1: to jump to some dir. in the selected folders, simply create a file in
 
 
 ```
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 fd -H -t d "$@"|fzf
 ```
 
 or
 
 ```
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 fd -H -t d "$@"|zf
 ```
 
@@ -51,7 +51,7 @@ For example, find relevant books using `faziffd` and reveal them in yazi's searc
 
 4. show recent modified files.
 ```
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 fd -H -t f --changed-within 1d|fzf 
 ```
 ## How It Works

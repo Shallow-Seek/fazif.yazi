@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 rm -f /tmp/rg-fzf-{r,f} 2>/dev/null
-RG_PREFIX="rga --glob='*.pdf' --glob='*.djvu' --glob='*.djv' --with-filename --color=always --no-heading --smart-case --field-match-separator $'\u00a0'"
+RG_PREFIX="rga --glob='*.pdf' --glob='*.djvu' --glob='*.djv' --with-filename --line-number --color=always --no-heading --smart-case --field-match-separator $'\u00a0'"
 
 FILES_TO_ADD=""
 for item in "$@"; do
@@ -23,7 +23,7 @@ done
             echo "unbind(change)+change-prompt(fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' \
     --bind 'ctrl-o:execute(
             pagenumber=$(echo {2} | cut -d: -f1 | sed "s/Page\ //")
-            zathura --page=$pagenumber --find={q} {1} &)' \
+            setsid zathura --page=$pagenumber --find={q} {1} &)' \
     --preview '
             printf "\033_Ga=d,q=1\033\\"
             [ -n {2} ] && pagenumber=$(echo {2} | cut -d: -f1 | sed "s/Page\ //") || pagenumber=1
