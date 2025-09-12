@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 rm -f /tmp/rg-fzf-{r,f} 2>/dev/null
-RG_PREFIX="rga --glob='*.pdf' --glob='*.djvu' --glob='*.djv' --with-filename --line-number --color=always --no-heading --smart-case --field-match-separator $'\u00a0'"
+RG_PREFIX="rga --glob='*.pdf' --glob='*.djvu' --glob='*.djv' --with-filename --color=always --no-heading --smart-case --field-match-separator $'\u00a0'"
 
 FILES_TO_ADD=""
 for item in "$@"; do
