@@ -13,11 +13,12 @@ done
     --ansi \
     --delimiter $'\u00a0' \
     --disabled \
+    --with-nth 2,1 \
     --prompt="rga> " \
     --color "hl:-1:underline,hl+:-1:underline:reverse" \
     --bind "change:reload:sleep 0.1; $RG_PREFIX {q} $([ $# -gt 0 ] && printf "%q " "$@") || true" \
     --bind 'focus:transform-preview-label:echo $(basename {1})' \
-    --bind 'ctrl-p:change-preview-window(right,50%|down,50%|hidden)' \
+    --bind 'ctrl-p:change-preview-window(down,50%|right,50%|hidden)' \
     --bind 'ctrl-y:transform:[[ ! $FZF_PROMPT =~ rga ]] &&
             echo "rebind(change)+change-prompt(rga> )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
             echo "unbind(change)+change-prompt(fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' \

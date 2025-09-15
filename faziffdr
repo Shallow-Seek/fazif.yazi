@@ -1,17 +1,19 @@
 #!/usr/bin/env sh
-FD_COMMAND="fd --changed-within 5d"
+FD_COMMAND5="fd --changed-within 5d"
+FD_COMMAND1="fd --changed-within 1d"
 
-$FD_COMMAND . "$@" |fzf \
+
+$FD_COMMAND5 -t f . "$@" |fzf \
 --info=inline \
 --multi \
 --layout=reverse \
---prompt='ctl-wetcrfp_CWD_NO_H> ' \
---bind "ctrl-w:transform:echo 'change-prompt(ctl-wetcrfp_Home_with_H> )+reload($FD_COMMAND -H . ~ )'" \
---bind "ctrl-e:transform:echo 'change-prompt(ctl-wetcrfp_Home_NO_H )+reload($FD_COMMAND . ~)'" \
---bind "ctrl-t:transform:echo 'change-prompt(ctl-wetcrfp_CWD_with_H> )+reload($FD_COMMAND -H)'" \
---bind "alt-c:transform:echo 'change-prompt(ctl-wetcrfp_CWD_NO_H> )+reload($FD_COMMAND)'" \
---bind "ctrl-r:transform:echo 'change-prompt(ctl-wetcrfp_Root_with_H> )+reload($FD_COMMAND -H . /)'" \
---bind "ctrl-f:transform:echo 'change-prompt(ctl-wetcrfp_Root_without_H> )+reload($FD_COMMAND . /)'" \
+--prompt='ctl-wetcrfp_CWD5d> ' \
+--bind "ctrl-w:transform:echo 'change-prompt(ctl-wetcrfp_HOME5d> )+reload($FD_COMMAND5 -t f . ~ )'" \
+--bind "ctrl-e:transform:echo 'change-prompt(ctl-wetcrfp_HOME1d)+reload($FD_COMMAND1 -t f . ~)'" \
+--bind "ctrl-t:transform:echo 'change-prompt(ctl-wetcrfp_CWD5d> )+reload($FD_COMMAND5 -t f)'" \
+--bind "alt-c:transform:echo 'change-prompt(ctl-wetcrfp_CWD1d> )+reload($FD_COMMAND1 -t f)'" \
+--bind "ctrl-r:transform:echo 'change-prompt(ctl-wetcrfp_HOMEA> )+reload($FD_COMMAND5 . ~)'" \
+--bind "ctrl-f:transform:echo 'change-prompt(ctl-wetcrfp_HOMEA_WithH> )+reload($FD_COMMAND1 -H . ~)'" \
 --bind 'focus:transform-preview-label:echo {}' \
 --bind 'ctrl-p:change-preview-window(right|down|hidden)' \
 --bind 'focus:transform-preview-label:echo {}' \
@@ -30,7 +32,7 @@ $FD_COMMAND . "$@" |fzf \
             ;;
         *.doc|*.docx|*.xls|*.xlsx|*.ppt|*.pptx|*.odt|*.ods|*.odp)
             libreoffice --convert-to jpg --outdir /tmp {} >/dev/null 2>&1
-            mv /tmp/${$(basename {})%.*}.jpg $tmp
+            mv "/tmp/${$(basename {})%.*}.jpg" $tmp
             kitty icat --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 $tmp
             ;;
         *.djvu)

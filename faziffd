@@ -17,6 +17,7 @@ fd . -H "$@" |fzf \
 --bind 'ctrl-x:execute-silent(setsid kitty nnn {} &)' \
 --bind 'ctrl-a:execute-silent(setsid kitty yazi {} &)' \
 --bind 'ctrl-s:execute-silent(setsid thunar {} &)' \
+--bind 'ctrl-o:execute-silent(xdg-open-nvim {} &)' \
 --preview-window 'hidden' \
 --preview '
     printf "\033_Ga=d,q=1\033\\"
