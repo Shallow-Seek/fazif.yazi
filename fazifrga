@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 rm -f /tmp/rg-fzf-{r,f} 2>/dev/null
-RG_PREFIX="rga --glob='*.pdf' --glob='*.djvu' --glob='*.djv' --with-filename --color=always --no-heading --smart-case --field-match-separator $'\u00a0'"
+RG_PREFIX="rga  --glob='*.pdf' --glob='*.djvu' --glob='*.djv' --with-filename --color=always --no-heading --smart-case --field-match-separator $'\u00a0'"
 
 FILES_TO_ADD=""
 for item in "$@"; do
@@ -18,13 +18,20 @@ done
     --color "hl:-1:underline,hl+:-1:underline:reverse" \
     --bind "change:reload:sleep 0.1; $RG_PREFIX {q} $([ $# -gt 0 ] && printf "%q " "$@") || true" \
     --bind 'focus:transform-preview-label:echo $(basename {1})' \
-    --bind 'ctrl-p:change-preview-window(down,50%|right,50%|hidden)' \
+    --bind 'ctrl-p:change-preview-window(right,50%|hidden,50%|down)' \
+    --bind 'ctrl-x:execute-silent(setsid kitty -1 nnn {1} &)' \
+    --bind 'ctrl-a:execute-silent(setsid kitty -1 yazi {1} &)' \
+    --bind 'ctrl-s:execute-silent(setsid thunar {1} &)' \
+    --preview-window 'down' \
     --bind 'ctrl-y:transform:[[ ! $FZF_PROMPT =~ rga ]] &&
             echo "rebind(change)+change-prompt(rga> )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
             echo "unbind(change)+change-prompt(fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' \
     --bind 'ctrl-o:execute(
-            pagenumber=$(echo {2} | cut -d: -f1 | sed "s/Page\ //")
-            setsid zathura --page=$pagenumber --find={q} {1} &)' \
+            page_info={2}
+            pagenumber=${page_info#Page }
+            pagenumber=${pagenumber%%: *}
+            context=${page_info#*: }
+            setsid zathura --page=$pagenumber --find=$context {1} &)' \
     --preview '
             printf "\033_Ga=d,q=1\033\\"
             [ -n {2} ] && pagenumber=$(echo {2} | cut -d: -f1 | sed "s/Page\ //") || pagenumber=1

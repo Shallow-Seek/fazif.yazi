@@ -14,9 +14,6 @@ fd . -H "$@" |fzf \
 --bind 'focus:transform-preview-label:echo {}' \
 --bind 'ctrl-p:change-preview-window(right|down|hidden)' \
 --bind 'focus:transform-preview-label:echo {}' \
---bind 'ctrl-x:execute-silent(setsid kitty nnn {} &)' \
---bind 'ctrl-a:execute-silent(setsid kitty yazi {} &)' \
---bind 'ctrl-s:execute-silent(setsid thunar {} &)' \
 --bind 'ctrl-o:execute-silent(xdg-open-nvim {} &)' \
 --preview-window 'hidden' \
 --preview '
@@ -30,7 +27,7 @@ fd . -H "$@" |fzf \
             ;;
         *.doc|*.docx|*.xls|*.xlsx|*.ppt|*.pptx|*.odt|*.ods|*.odp)
             libreoffice --convert-to jpg --outdir /tmp {} >/dev/null 2>&1
-            mv /tmp/${$(basename {})%.*}.jpg $tmp
+            mv "/tmp/${$(basename {})%.*}.jpg" $tmp
             kitty icat --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 $tmp
             ;;
         *.djvu)

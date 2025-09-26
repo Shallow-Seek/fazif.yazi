@@ -25,5 +25,8 @@ done
   --bind 'ctrl-p:change-preview-window(right,60%|hidden|down,60%)' \
   --bind 'focus:transform-preview-label:echo $(basename {1})' \
   --bind 'ctrl-o:execute(kitty -1 sh -c "nvim {1} +{2}" & )' \
+  --bind 'ctrl-x:execute-silent(setsid kitty -1 nnn {1} &)' \
+  --bind 'ctrl-a:execute-silent(setsid kitty -1 yazi {1} &)' \
+  --bind 'ctrl-s:execute-silent(setsid thunar {1} &)' \
   --color 'label:117:bold'
 
