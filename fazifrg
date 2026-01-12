@@ -20,7 +20,15 @@ done
     echo "rebind(change)+change-prompt(1. ripgrep> )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
     echo "unbind(change)+change-prompt(2. fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' \
   --color "hl:-1:underline,hl+:-1:underline:reverse" \
-  --preview '[ -n "{2}" ] && bat --color=always {1} --style=numbers --highlight-line {2} || bat --color=always {} --style=numbers' \
+  --preview '
+    # fzf can yield empty lines; only preview when we have a path
+    [[ -n {1} ]] || exit 0
+    if [[ -n {2} ]]; then
+      bat --color=always {1} --style=numbers --highlight-line {2}
+    else
+      bat --color=always {1} --style=numbers
+    fi
+  ' \
   --preview-window 'down,60%,+{2}+3/3,~3' \
   --bind 'ctrl-p:change-preview-window(right,60%|hidden|down,60%)' \
   --bind 'focus:transform-preview-label:echo $(basename {1})' \
