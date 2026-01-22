@@ -61,7 +61,7 @@ end
 local function entry(_, job)
 	local script_name = job.args[1]
 	
-	local permit = ya.hide()
+	local permit = ui.hide()
 	local cwd, selected = state()
 
 	local output, err = run_with(cwd, selected, script_name)

@@ -10,6 +10,9 @@ for item in "$@"; do
 done
 
 (fd . -e pdf -e djvu -e djv "$@" 2>/dev/null & printf "%s" "$FILES_TO_ADD") | fzf \
+    --info=inline \
+    --multi \
+    --layout=reverse \
     --ansi \
     --delimiter $'\u00a0' \
     --disabled \
