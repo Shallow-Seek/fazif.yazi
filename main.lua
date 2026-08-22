@@ -1,7 +1,8 @@
 local state = ya.sync(function()
 	local selected = {}
-	for _, url in pairs(cx.active.selected) do
-		selected[#selected + 1] = url
+	for k, v in pairs(cx.active.selected) do
+		local u = (type(k) == "userdata" or type(k) == "table") and k or v
+		selected[#selected + 1] = u
 	end
 	return cx.active.current.cwd, selected
 end)
@@ -31,20 +32,19 @@ end
 local function run_with(cwd, selected, script_name)
 	local script_path = os.getenv("HOME") .. "/.config/yazi/plugins/fazif.yazi/" .. script_name
 
-	local sepaths = {}
-	if #selected > 0 then
-		for _, u in ipairs(selected) do
-			table.insert(sepaths, tostring(u))
+	local cmd = Command(script_path)
+		:cwd(tostring(cwd))
+		:stdin(Command.INHERIT)
+		:stdout(Command.PIPED)
+
+	for _, u in ipairs(selected) do
+		local path = tostring(u.url or u)
+		if path and path ~= "" then
+			cmd = cmd:arg(path)
 		end
 	end
 
-	local child
-	if #selected == 0 then
-		child = Command(script_path):cwd(tostring(cwd)):stdin(Command.INHERIT):stdout(Command.PIPED):spawn()
-	else
-		child = Command(script_path):arg(sepaths):stdout(Command.PIPED):spawn()
-	end
-
+	local child = cmd:spawn()
 	if not child then
 		return nil, "Failed to start script"
 	end
@@ -104,4 +104,3 @@ local function entry(_, job)
 end
 
 return { entry = entry }
-
