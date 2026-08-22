@@ -66,7 +66,7 @@ This plugin acts as a bridge between Yazi and standalone scripts. The main.lua f
 1. Install via ya:
 
 ```bash
-ya pkg -a Shallow-Seek/fazif
+ya pkg Shallow-Seek/fazif
 ```
 
 or
