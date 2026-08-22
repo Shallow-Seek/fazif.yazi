@@ -35,7 +35,12 @@ fd . -H "$@" |fzf \
             kitty icat --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 $tmp
             ;;
         *)
-            if file --mime-type {} | grep -qP "image/(?!vnd\.djvu)"; then
+            # Pick grep implementation (macOS default grep lacks -P; use ggrep if available)
+            grep_cmd="grep"
+            if [[ "$OSTYPE" == darwin* ]] && command -v ggrep >/dev/null 2>&1; then
+              grep_cmd="ggrep"
+            fi
+            if file --mime-type {} | $grep_cmd -qP "image/(?!vnd\.djvu)"; then
                 kitty icat --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 {}
             else
                 bat -p {} --color=always 2>/dev/null 
